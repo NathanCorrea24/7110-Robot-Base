@@ -56,8 +56,8 @@ void NeoSwerveModule::SetDesiredState(const frc::SwerveModuleState& refstate) {
   if (fabs(state.speed.value()) < 0.001) {
     StopMotors();
   } else {
-  m_drivePID.SetReference(state.speed.value(), rev::CANSparkMax::ControlType::kVelocity);
-  m_turnMotor.Set(Turn);
+    m_drivePID.SetReference(state.speed.value(), rev::CANSparkMax::ControlType::kVelocity);
+    m_turnMotor.Set(Turn);
   }
 }
 

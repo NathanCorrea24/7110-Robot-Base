@@ -23,10 +23,9 @@
 #include "Constants.h"
 
 //Subsystems
-#include "subsystems/DriveSubsystem.h"
+#include "subsystems/SwerveSubsystem.h"
 
 //Commands
-#include "commands/DefaultDriveCMD.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -54,7 +53,7 @@ class RobotContainer {
   frc::SlewRateLimiter<units::scalar> m_speedLimitz{3 / 1_s};
 
   // The robot's subsystems
-  DriveSubsystem m_drive;
+  SwerveSubsystem m_drive;
 
   // The robot's commands
 

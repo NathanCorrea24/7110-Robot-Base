@@ -27,7 +27,7 @@
 #include <frc2/command/ConditionalCommand.h>
 
 #include "Constants.h"
-#include "subsystems/DriveSubsystem.h"
+#include "subsystems/SwerveSubsystem.h"
 #include "utils/cams/Limelight.h"
 
 
@@ -43,18 +43,11 @@ RobotContainer::RobotContainer() {
   */
 
   frc::SmartDashboard::PutData("Auto Chooser", &m_chooser);
-  // frc::SmartDashboard::PutData("Swerve Drive", &m_swerve);
 
   // Configure the button bindings
   ConfigureButtonBindings();
 
   //Default subsystem commands are defined in this section
-  m_drive.SetDefaultCommand(DefaultDriveCMD(&m_drive, 
-        [this] {return -(frc::ApplyDeadband(m_driverController.GetLeftY() < 0 ? -(m_driverController.GetLeftY() * m_driverController.GetLeftY()) : (m_driverController.GetLeftY() * m_driverController.GetLeftY()), 0.01));}, 
-        [this] {return (frc::ApplyDeadband(m_driverController.GetLeftX() < 0 ? -(m_driverController.GetLeftX() * m_driverController.GetLeftX()) : (m_driverController.GetLeftX() * m_driverController.GetLeftX()), 0.01));},
-        [this] {return (frc::ApplyDeadband(m_driverController.GetRightX(), 0.025) * (double)DriveConstants::kMaxAngularSpeed);}, 
-        [this] {return true;},
-        [this] {return m_drive.GetSpeed().value();}));
 
 }
 
@@ -64,7 +57,7 @@ void RobotContainer::ConfigureButtonBindings() {
    *  frc::JoystickButton(&m_controller, frc::XboxController::Button::kButton).WhenPressed(Command);
    *  TODO: test command xbox controller implementation(found below) and see if it works
   */
-  m_driver.A().WhenActive(frc2::InstantCommand([this] {m_drive.ZeroHeading();}));
+  m_driver.A().WhenActive(frc2::InstantCommand([this] {m_drive.ZeroHeading(0_deg);}));
 }
 
 

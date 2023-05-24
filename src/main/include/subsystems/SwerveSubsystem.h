@@ -21,6 +21,9 @@ class SwerveSubsystem : public frc2::SubsystemBase {
     void Drive(units::meters_per_second_t x, units::meters_per_second_t y,
                units::radians_per_second_t rot, bool field);
 
+    void Drive(units::meters_per_second_t x, units::meters_per_second_t y,
+               units::radians_per_second_t rot, bool field, bool scaleInputs);
+
     void SetModuleStates(wpi::array<frc::SwerveModuleState, 4> states);
 
     void ZeroHeading(units::degree_t heading);
@@ -29,7 +32,7 @@ class SwerveSubsystem : public frc2::SubsystemBase {
 
     void ResetOdometry(const frc::Pose2d& pose);
 
-    void InitSendable(wpi::SendableBuilder& builder) override;
+    // void InitSendable(wpi::SendableBuilder& builder) override;
 
   private:
 
@@ -41,10 +44,10 @@ class SwerveSubsystem : public frc2::SubsystemBase {
     hb::pigeonGyro m_Gyro;
 
     frc::SwerveDriveKinematics<4> m_Kinematics {
-      frc::Translation2d(DriveConstants::kTrackLength / 2, -DriveConstants::kTrackWidth / 2),
-      frc::Translation2d(DriveConstants::kTrackLength / 2, DriveConstants::kTrackWidth / 2),
-      frc::Translation2d(-DriveConstants::kTrackLength / 2, -DriveConstants::kTrackWidth / 2),
-      frc::Translation2d(-DriveConstants::kTrackLength / 2, DriveConstants::kTrackWidth / 2)
+      frc::Translation2d(DriveConstants::kTrackLength, -DriveConstants::kTrackWidth),
+      frc::Translation2d(DriveConstants::kTrackLength, DriveConstants::kTrackWidth),
+      frc::Translation2d(-DriveConstants::kTrackLength, -DriveConstants::kTrackWidth),
+      frc::Translation2d(-DriveConstants::kTrackLength, DriveConstants::kTrackWidth)
     };
 
     wpi::array<frc::SwerveModulePosition, 4> m_ModulePositions;
