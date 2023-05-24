@@ -13,16 +13,6 @@
 
 void Robot::RobotInit() {
 
-  // Auto Logs all data sent to network tables to datalogs on Rio
-  frc::DataLogManager::Start();
-  frc::DataLogManager::LogNetworkTables(true);
-
-  // Logs all data from the Driver Station to the log
-  frc::DriverStation::StartDataLog(frc::DataLogManager::GetLog());
-
-  // Tells user where to find the log for this run of the robot
-  printf("************** LOG STARTED AT %s **************\n", frc::DataLogManager::GetLogDir().c_str());
-
   // Ensures the LimeLight doesn't burn our eyes out upon startup
   hb::limeLight::SetLED(hb::limeLight::LEDMode::kOff);
 
